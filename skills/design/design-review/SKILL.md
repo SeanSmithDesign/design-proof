@@ -31,7 +31,7 @@ Full design quality pipeline: guard + composite score + fix. Runs **all active l
 2. Follow the engine's **Step 1: Load Project Config** to determine active layers, aesthetic, strictness, and teaching mode
 3. Load layer references for each active layer:
    - If bringhurst active → `~/.claude/skills/design/design-quality/layers/bringhurst.md`
-   - If rams active → `~/.claude/skills/design/design-quality/layers/rams.md`
+   - If a11y active → `~/.claude/skills/design/design-quality/layers/a11y.md`
 4. Load the aesthetic preset from `~/.claude/skills/design/design-quality/presets/<name>.md`
 5. Load the review rubric from `~/.claude/skills/design/design-quality/references/review-rubric.md`
 6. Load the guard checklist from `~/.claude/skills/design/design-quality/references/guard-checks.md`
@@ -51,7 +51,7 @@ For each file in scope, run three phases across **all active layers**:
 Run through the guard checklist (`references/guard-checks.md`). **Only check rules tagged with active layers.**
 
 For each violation found:
-- Note the layer it belongs to (`[bringhurst]`, `[aesthetic]`, `[rams]`)
+- Note the layer it belongs to (`[bringhurst]`, `[aesthetic]`, `[a11y]`)
 - Apply strictness setting: `relaxed` downgrades everything to suggestion, `strict` upgrades warnings to errors
 - Apply teaching setting for explanation depth
 
@@ -65,7 +65,7 @@ Score using the composite rubric (`references/review-rubric.md`):
 |-------|-----------|------------|
 | Craft (bringhurst) | /30 | Measure & Readability (10), Vertical Rhythm (10), Type Scale & Weight (10) |
 | Aesthetic (preset) | /40 | Hierarchy (10), Color & Tokens (10), Spacing & Grid (10), Elevation & Polish (10) |
-| Accessibility (rams) | /30 | WCAG Compliance (15), Visual Quality (8), Component States (7) |
+| Accessibility (a11y) | /30 | WCAG Compliance (15), Visual Quality (8), Component States (7) |
 | **Composite** | **/100** | |
 
 **When a layer is disabled:** Re-weight remaining layers proportionally to 100.
@@ -104,7 +104,7 @@ Use the composite score report format from `references/review-rubric.md`:
 |-------|-------|--------|
 | Craft (bringhurst) | XX/30 | Pass / Needs Work / Fail |
 | Aesthetic ([preset]) | XX/40 | Pass / Needs Work / Fail |
-| Accessibility (rams) | XX/30 | Pass / Needs Work / Fail |
+| Accessibility (a11y) | XX/30 | Pass / Needs Work / Fail |
 
 ### Category Breakdown
 | Layer | Category | Score | Key Finding |

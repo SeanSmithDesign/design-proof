@@ -28,7 +28,7 @@ Generate a unified style brief that constrains upcoming UI work using **all acti
 2. Follow the engine's **Step 1: Load Project Config** to determine active layers, aesthetic, strictness, and teaching mode
 3. Load layer references for each active layer:
    - If bringhurst active → `~/.claude/skills/design/design-quality/layers/bringhurst.md`
-   - If rams active → `~/.claude/skills/design/design-quality/layers/rams.md`
+   - If a11y active → `~/.claude/skills/design/design-quality/layers/a11y.md`
 4. Load the aesthetic preset from `~/.claude/skills/design/design-quality/presets/<name>.md`
 
 ## Arguments
@@ -57,7 +57,7 @@ Generate a unified brief with sections from **each active layer**:
 6. **Component Patterns** — Card, button, navigation, form treatments
 7. **Do/Don't** — Code examples from the preset
 
-### From A11y Layer (rams) — if active
+### From A11y Layer — if active
 
 1. **Touch Targets** — Minimum sizes, recommended classes
 2. **Contrast** — WCAG AA ratios, how to verify
@@ -70,7 +70,7 @@ Generate a unified brief with sections from **each active layer**:
 
 ```markdown
 ## Style Brief
-**Active Layers:** [bringhurst, aesthetic, rams]
+**Active Layers:** [bringhurst, aesthetic, a11y]
 **Aesthetic:** [preset name or design-system]
 **Strictness:** [relaxed / standard / strict]
 
@@ -112,7 +112,7 @@ Generate a unified brief with sections from **each active layer**:
 
 ---
 
-### A11y Requirements (RAMS)
+### A11y Requirements
 
 **Touch Targets:** `min-h-11` (44px) on all interactive elements.
 **Contrast:** 4.5:1 normal text, 3:1 large text (18px+ or 14px bold+).
@@ -130,6 +130,6 @@ After generating, ask if the user wants to proceed with coding or adjust any con
 ## Layer-Specific Notes
 
 - If **only bringhurst** is active (no aesthetic), the brief focuses on craft fundamentals without preset-specific rules. Generic best practices replace preset sections.
-- If **only rams** is active (no bringhurst), skip the craft constraints section.
+- If **only a11y** is active (no bringhurst), skip the craft constraints section.
 - If **aesthetic is `none`**, skip the aesthetic section entirely. Craft and a11y constraints still apply.
 - If **aesthetic is `design-system`**, analyze the project's design system tokens and generate the aesthetic section from those instead of a preset file.

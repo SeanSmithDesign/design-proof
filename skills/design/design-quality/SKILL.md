@@ -1,6 +1,6 @@
 ---
 name: design-quality
-description: Unified design quality engine. Three composable layers — Craft (bringhurst), Aesthetic (preset/design-system), Accessibility (rams) — activate at the right workflow stage to produce better UI code automatically.
+description: Unified design quality engine. Three composable layers — Craft (bringhurst), Aesthetic (preset/design-system), Accessibility (a11y) — activate at the right workflow stage to produce better UI code automatically.
 license: MIT
 metadata:
   version: 2.0.0
@@ -33,7 +33,7 @@ Three composable layers that produce better UI code — automatically (invisible
 ```
 ┌─────────────────────────────────────────────┐
 │              Project CLAUDE.md              │
-│  layers: [bringhurst, rams]                │
+│  layers: [bringhurst, a11y]                │
 │  aesthetic: shadcn | preset:linear-mercury  │
 │  overrides: { ... }                        │
 └──────────────────┬──────────────────────────┘
@@ -47,7 +47,7 @@ Three composable layers that produce better UI code — automatically (invisible
     ▼              ▼              ▼
 ┌────────┐  ┌───────────┐  ┌─────────┐
 │ Craft  │  │ Aesthetic  │  │  A11y   │
-│bringhurst│ │preset/DS  │  │  rams   │
+│bringhurst│ │preset/DS  │  │  a11y   │
 └────────┘  └───────────┘  └─────────┘
 ```
 
@@ -55,7 +55,7 @@ Three composable layers that produce better UI code — automatically (invisible
 |-------|------|---------|---------|
 | **Craft** (bringhurst) | `layers/bringhurst.md` | Typographic & spatial fundamentals | On |
 | **Aesthetic** (preset/design-system) | `presets/<name>.md` | Project look & feel | `linear-mercury` fallback |
-| **Accessibility** (rams) | `layers/rams.md` | WCAG compliance & visual bugs | On |
+| **Accessibility** (a11y) | `layers/a11y.md` | WCAG 2.1 + 2.2 compliance, modern HTML, visual quality | On |
 
 ## Related Skills
 
@@ -67,7 +67,7 @@ Two standalone skills handle explicit user-invoked actions:
 | `design-review` | After coding | `/design-review` or "review the design quality" |
 
 `/design-review` produces a composite score with layer sub-scores.
-`/rams` still works as a standalone a11y-only shortcut.
+`/a11y` still works as a standalone a11y-only shortcut.
 
 ---
 
@@ -77,7 +77,7 @@ Read the project's `CLAUDE.md` for a `## Design Quality` section. Parse these fi
 
 | Field | Default | Options |
 |-------|---------|---------|
-| **Layers** | `bringhurst, rams` | Any combination of `bringhurst`, `rams`. Omit one to disable it. |
+| **Layers** | `bringhurst, a11y` | Any combination of `bringhurst`, `a11y`. Omit one to disable it. |
 | **Aesthetic** | `linear-mercury` | A preset name (`linear-mercury`, `stripe-vercel`, `apple-notion`), `design-system` (auto-detect), or `none` |
 | **Strictness** | `standard` | `relaxed` (suggestions only), `standard` (warnings), `strict` (errors that affect score) |
 | **Teaching** | `normal` | `verbose` (explain everything), `normal` (explain novel violations — first per concept per session), `quiet` (just flag) |
@@ -88,7 +88,7 @@ Read the project's `CLAUDE.md` for a `## Design Quality` section. Parse these fi
 ```markdown
 ## Design Quality
 
-**Layers:** bringhurst, rams
+**Layers:** bringhurst, a11y
 **Aesthetic:** linear-mercury
 **Strictness:** standard
 **Teaching:** normal
@@ -99,7 +99,7 @@ Read the project's `CLAUDE.md` for a `## Design Quality` section. Parse these fi
 ### Smart Defaults (when no config exists)
 
 If no `## Design Quality` section is found:
-- Layers: `bringhurst` + `rams` (both on)
+- Layers: `bringhurst` + `a11y` (both on)
 - Aesthetic: `linear-mercury` (fallback preset)
 - Strictness: `standard`
 - Teaching: `normal`
@@ -112,14 +112,14 @@ When `Aesthetic: design-system` is set, look for:
 2. Design tokens file (`tokens.json`, `theme.ts`, `tailwind.config` custom theme)
 3. Figma-exported tokens
 
-When a design system is detected, it **replaces** the aesthetic preset — the craft (bringhurst) and a11y (rams) layers still apply on top.
+When a design system is detected, it **replaces** the aesthetic preset — the craft (bringhurst) and a11y layers still apply on top.
 
 ### Loading Sequence
 
 1. Parse `## Design Quality` from project `CLAUDE.md` (or apply smart defaults)
 2. Load active layers:
    - If `bringhurst` in layers → load `~/.claude/skills/design/design-quality/layers/bringhurst.md`
-   - If `rams` in layers → load `~/.claude/skills/design/design-quality/layers/rams.md`
+   - If `a11y` in layers → load `~/.claude/skills/design/design-quality/layers/a11y.md`
 3. Load aesthetic:
    - If preset name → load `~/.claude/skills/design/design-quality/presets/<name>.md`
    - If `design-system` → detect and load project's design system
@@ -140,7 +140,7 @@ When writing UI code, silently apply checks from **all active layers**:
 1. Before writing a component, check the code against:
    - **Craft checks** (bringhurst) — measure, rhythm, scale, weight, typeface constraints
    - **Aesthetic checks** (preset) — colors, fonts, spacing grid, elevation, motion
-   - **A11y checks** (rams) — touch targets, ARIA labels, contrast, keyboard nav
+   - **A11y checks** (a11y) — touch targets, ARIA labels, contrast, keyboard nav, WCAG 2.2
 2. If violations found, flag them in your response BEFORE writing the code
 3. Write the corrected code (not the violating version)
 4. Apply teaching moments per the **Teaching** setting:
@@ -175,7 +175,7 @@ This is automatic — no user action needed. Use `/design-review` for the explic
 | User asks for code review with UI in diff | All active layers | Include design scoring | Run design-review scoring as part of the code review — don't make them ask separately. |
 | User's composite score < 70 | All active layers | Offer to fix | "Composite score is XX/100 — want me to auto-fix the N errors and warnings?" |
 | Session starts with `## Design Quality` in CLAUDE.md | — | Acknowledge | Brief one-liner: "Design quality active — [layers], [preset] aesthetic." |
-| User asks for a11y-only audit | Rams | `/rams` | "Running a11y layer only — use `/design-review` for the full composite audit." |
+| User asks for a11y-only audit | A11y | `/a11y` | "Running a11y layer only — use `/design-review` for the full composite audit." |
 
 ### Recommendation Rules
 
@@ -217,7 +217,7 @@ Overrides the project default until the session ends.
 | Workflow Stage | Active Layers | What It Does |
 |----------------|---------------|--------------|
 | **brainstorm** | Craft (bringhurst) | Surfaces relevant design principles for the feature. "This is data-dense — consider a modular scale for the type hierarchy." |
-| **plan / brief** | All active layers | Generates unified constraints document: typography (craft), color/elevation (aesthetic), a11y requirements (rams). User can adjust before coding. |
+| **plan / brief** | All active layers | Generates unified constraints document: typography (craft), color/elevation (aesthetic), a11y requirements. User can adjust before coding. |
 | **work** | All active layers (inline) | Silent guard checks from all layers. Teaching moments on violations per Teaching setting. |
 | **review** | All active layers (explicit) | Unified audit → composite score with layer sub-scores. Single `/design-review` runs everything. |
-| **rams** (standalone) | A11y layer only | Still works independently for quick a11y-only audits via `/rams`. |
+| **a11y** (standalone) | A11y layer only | Still works independently for quick a11y-only audits via `/a11y`. |

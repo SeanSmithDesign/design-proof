@@ -10,12 +10,12 @@ The composite score combines three layer sub-scores. Only active layers contribu
 |-------|-----------|------------|
 | **Craft** (bringhurst) | /30 | Measure & Readability, Vertical Rhythm, Type Scale & Weight |
 | **Aesthetic** (preset) | /40 | Hierarchy, Color & Tokens, Spacing & Grid, Elevation & Polish |
-| **Accessibility** (rams) | /30 | WCAG Compliance, Visual Quality, Component States |
+| **Accessibility** (a11y) | /30 | WCAG Compliance, Visual Quality, Component States |
 | **Composite** | /100 | Weighted sum of active layers |
 
 **When all layers active:** Craft 30 + Aesthetic 40 + A11y 30 = 100
-**When only bringhurst + rams:** Craft 40 + A11y 60 = 100 (re-weighted)
-**When only aesthetic + rams:** Aesthetic 55 + A11y 45 = 100 (re-weighted)
+**When only bringhurst + a11y:** Craft 40 + A11y 60 = 100 (re-weighted)
+**When only aesthetic + a11y:** Aesthetic 55 + A11y 45 = 100 (re-weighted)
 
 ---
 
@@ -166,7 +166,7 @@ Does the interface feel finished? Does depth match the preset's system?
 
 ---
 
-## Accessibility Sub-Score (RAMS Layer) — /30
+## Accessibility Sub-Score (A11y Layer) — /30
 
 ### Category: WCAG Compliance (~15 pts)
 
@@ -347,7 +347,7 @@ Concrete code examples to calibrate scoring consistency across sessions.
 |-------|-------|--------|
 | Craft (bringhurst) | XX/30 | Pass / Needs Work / Fail |
 | Aesthetic ([preset]) | XX/40 | Pass / Needs Work / Fail |
-| Accessibility (rams) | XX/30 | Pass / Needs Work / Fail |
+| Accessibility (a11y) | XX/30 | Pass / Needs Work / Fail |
 
 ### Category Breakdown
 | Layer | Category | Score | Key Finding |

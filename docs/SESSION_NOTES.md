@@ -1,6 +1,6 @@
 # Session Notes
 
-## 2025-02-19 — design-brief-and-review
+## 2025-02-19 — design-proof
 
 ### Summary
 
@@ -63,4 +63,4 @@ Implemented the Unified Design Quality System — a three-layer composable archi
 
 ### Repo
 
-- https://github.com/SeanSmithDesign/design-brief-and-review
+- https://github.com/SeanSmithDesign/design-proof

@@ -12,7 +12,7 @@ Always load `~/.claude/skills/design/design-quality/SKILL.md` when working on UI
 |-------|------|---------|---------|
 | **Craft** (bringhurst) | `layers/bringhurst.md` | Typographic & spatial fundamentals (measure, rhythm, scale, weight restraint) | On |
 | **Aesthetic** (preset) | `presets/<name>.md` | Project look & feel (colors, spacing grid, elevation, motion) | `linear-mercury` |
-| **Accessibility** (rams) | `layers/rams.md` | WCAG compliance & visual quality | On |
+| **Accessibility** (a11y) | `layers/a11y.md` | WCAG 2.1 + 2.2 compliance, modern HTML, visual quality | On |
 
 **Available presets:** `linear-mercury`, `stripe-vercel`, `apple-notion`
 
@@ -20,14 +20,14 @@ Always load `~/.claude/skills/design/design-quality/SKILL.md` when working on UI
 - `~/.claude/skills/design/design-quality/SKILL.md` — Core engine (orchestrator, layer loading, inline guard, recommendations)
 - `~/.claude/skills/design/design-brief/SKILL.md` — `/design-brief` before coding (generates constraints from all active layers)
 - `~/.claude/skills/design/design-review/SKILL.md` — `/design-review` after coding (composite score with layer sub-scores + auto-fix)
-- `/rams` — Standalone a11y-only shortcut (runs just the rams layer)
+- `/a11y` — Standalone accessibility audit (runs just the a11y layer)
 
 **Per-project config** via `## Design Quality` section in each project's `CLAUDE.md`:
 
 ```markdown
 ## Design Quality
 
-**Layers:** bringhurst, rams
+**Layers:** bringhurst, a11y
 **Aesthetic:** linear-mercury
 **Strictness:** standard
 **Teaching:** normal
@@ -37,13 +37,13 @@ Always load `~/.claude/skills/design/design-quality/SKILL.md` when working on UI
 
 | Field | Default | Options |
 |-------|---------|---------|
-| **Layers** | `bringhurst, rams` | Any combination. Omit one to disable it. |
+| **Layers** | `bringhurst, a11y` | Any combination. Omit one to disable it. |
 | **Aesthetic** | `linear-mercury` | Preset name, `design-system` (auto-detect), or `none` |
 | **Strictness** | `standard` | `relaxed` / `standard` / `strict` |
 | **Teaching** | `normal` | `verbose` / `normal` / `quiet` |
 | **Overrides** | none | Key-value overrides for any layer |
 
-**Smart defaults** when no config exists: bringhurst + rams on, `linear-mercury` aesthetic, standard strictness, normal teaching.
+**Smart defaults** when no config exists: bringhurst + a11y on, `linear-mercury` aesthetic, standard strictness, normal teaching.
 
 ## Agent Context System
 

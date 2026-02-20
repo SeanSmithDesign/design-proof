@@ -5,7 +5,7 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 **Layer tags:** Each check is tagged with its layer. Skip checks for inactive layers.
 - `[aesthetic]` — Requires an active preset or design system
 - `[bringhurst]` — Craft layer (typography & spatial fundamentals)
-- `[rams]` — Accessibility & visual quality layer
+- `[a11y]` — Accessibility (WCAG 2.1 + 2.2), modern HTML, visual quality layer
 - `[preset:<name>]` — Preset-specific exception applies
 
 **Platform key:** Examples show Web (React/Tailwind) by default. Apply equivalent checks for Swift (`Color()` literals, `.font()` modifiers), Compose (`Color(0xFF...)`, `MaterialTheme`), and Flutter (`Color()`, `ThemeData`).
@@ -57,7 +57,7 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 // Good: font-sans (maps to Inter)
 ```
 
-### 5. Touch Target Size `[rams]`
+### 5. Touch Target Size `[a11y]`
 **Severity:** Error
 **Look for:** Interactive elements (`button`, `a`, clickable `div`) with height < 44px
 **Fix:** Add `min-h-11` (44px) or ensure `h-11`+ / `py-3`+ on buttons
@@ -66,7 +66,7 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 // Good: <button className="min-h-11 px-4">
 ```
 
-### 6. Accessible Names `[rams]`
+### 6. Accessible Names `[a11y]`
 **Severity:** Error
 **Look for:** Icon-only buttons or links without `aria-label`
 **Fix:** Add `aria-label="Description"` to any element with only an icon
@@ -164,9 +164,9 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 
 ---
 
-## Accessibility Checks (RAMS layer)
+## Accessibility Checks (A11y layer)
 
-### 17. Focus Indicators `[rams]`
+### 17. Focus Indicators `[a11y]`
 **Severity:** Error
 **Look for:** `outline-none` or `focus:outline-none` without `focus-visible:ring-*` replacement
 **Fix:** Add visible focus indicator: `focus-visible:ring-2 focus-visible:ring-ring`
@@ -175,20 +175,80 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 // Good: focus:outline-none focus-visible:ring-2 focus-visible:ring-ring
 ```
 
-### 18. Color-Only Information `[rams]`
+### 18. Color-Only Information `[a11y]`
 **Severity:** Warning
 **Look for:** Status communicated only through color (green dot = active, red = error) without icon or text
 **Fix:** Add icon or text label alongside color indicator
 
-### 19. Reduced Motion `[rams]`
+### 19. Reduced Motion `[a11y]`
 **Severity:** Warning
 **Look for:** Animations without `prefers-reduced-motion` consideration
 **Fix:** Use `motion-safe:` Tailwind prefix or `@media (prefers-reduced-motion: reduce)` query
 
-### 20. Missing aria-live `[rams]`
+### 20. Missing aria-live `[a11y]`
 **Severity:** Warning
 **Look for:** Dynamic content (toasts, notifications, live counts) without `aria-live` region
 **Fix:** Add `aria-live="polite"` (most cases) or `aria-live="assertive"` (urgent alerts)
+
+### 21. Page Language `[a11y]`
+**Severity:** Warning
+**Look for:** `<html>` without `lang` attribute
+**Fix:** Add `lang="en"` (or appropriate language code)
+
+### 22. Vague Link Text `[a11y]`
+**Severity:** Warning
+**Look for:** Links with text like "click here", "read more", "learn more" without context
+**Fix:** Use descriptive link text that makes sense out of context
+
+### 23. Missing Autocomplete on Identity Fields `[a11y]`
+**Severity:** Suggestion
+**Look for:** Name, email, phone, address fields without `autocomplete` attribute
+**Fix:** Add appropriate `autocomplete` value (e.g., `autocomplete="email"`)
+
+### 24. Content Reflow at 320px `[a11y]`
+**Severity:** Warning
+**Look for:** Layouts requiring horizontal scroll at 320px viewport width
+**Fix:** Ensure content reflows to single column at narrow viewports
+
+### 25a. Text Spacing Tolerance `[a11y]`
+**Severity:** Warning
+**Look for:** Layouts that break under WCAG text spacing overrides (line-height 1.5×, paragraph spacing 2×, letter-spacing 0.12em, word-spacing 0.16em)
+**Fix:** Avoid fixed heights on text containers, use flexible layouts
+
+### 26. Accessible Authentication `[a11y]`
+**Severity:** Warning
+**Look for:** Login requiring cognitive tests (CAPTCHAs) without alternative, password fields blocking paste
+**Fix:** Allow paste in password fields, support password managers, offer passkey alternatives
+
+### 27. Redundant Entry `[a11y]`
+**Severity:** Warning
+**Look for:** Multi-step forms re-asking previously entered information
+**Fix:** Pre-populate from earlier steps or allow auto-fill
+
+### 28. Consistent Help Location `[a11y]`
+**Severity:** Suggestion
+**Look for:** Help mechanisms (chat, FAQ, contact) in different positions across pages
+**Fix:** Keep help in a consistent location across the site
+
+### 29. Dragging Alternatives `[a11y]`
+**Severity:** Warning
+**Look for:** Drag-only interactions (reorder, resize) without keyboard/click alternative
+**Fix:** Provide buttons, arrow keys, or click-to-place alternatives
+
+### 30. Native Dialog Preference `[a11y]`
+**Severity:** Suggestion
+**Look for:** Custom modals reimplementing focus trapping and backdrop
+**Fix:** Use `<dialog>` with `showModal()` for built-in focus trapping and Escape dismissal
+
+### 31. Inert Background Content `[a11y]`
+**Severity:** Warning
+**Look for:** Modal open but background content still keyboard/screen-reader accessible
+**Fix:** Add `inert` attribute to non-modal content when overlay is open
+
+### 32. DOM vs Visual Order Mismatch `[a11y]`
+**Severity:** Warning
+**Look for:** CSS `order`, `flex-direction: row-reverse`, grid placement diverging from DOM order
+**Fix:** Align DOM order with visual reading order, or use `reading-flow` CSS property
 
 ---
 
@@ -209,12 +269,12 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 **Look for:** Interactive elements without visible hover feedback
 **Fix:** Add hover state (background shift, shadow lift, or color change)
 
-### 24. Empty/Loading/Error States `[rams]`
+### 24. Empty/Loading/Error States `[a11y]`
 **Severity:** Suggestion
 **Look for:** Components that display data without handling no-data, loading, or error conditions
 **Fix:** Add appropriate states (skeleton, spinner, empty message, error message)
 
-### 25. Semantic HTML `[rams]`
+### 25. Semantic HTML `[a11y]`
 **Severity:** Suggestion
 **Look for:** `<div>` used where semantic elements would be more appropriate
 **Fix:** Use `<section>`, `<nav>`, `<main>`, `<article>`, `<header>`, `<footer>` as appropriate
@@ -239,12 +299,18 @@ Writing a component? Check active layers:
 ├─ Font sizes skip scale steps? → SUGGESTION. Fill the scale.
 └─ > 3 font weights in component? → SUGGESTION. Reduce weight palette.
 
-[rams] layer active?
+[a11y] layer active?
 ├─ Button/link < 44px? → ERROR. Add min-h-11.
 ├─ Icon-only interactive? → ERROR. Add aria-label.
 ├─ focus:outline-none without ring? → ERROR. Add focus-visible indicator.
 ├─ Color-only status? → WARNING. Add icon/text.
 ├─ No reduced-motion handling? → WARNING. Add motion-safe prefix.
+├─ No lang on <html>? → WARNING. Add lang attribute.
+├─ Vague link text? → WARNING. Make descriptive.
+├─ Custom modal instead of <dialog>? → SUGGESTION. Use native.
+├─ Modal open, background not inert? → WARNING. Add inert.
+├─ Drag-only interaction? → WARNING. Add alternative.
+├─ Password field blocks paste? → WARNING. Allow paste.
 └─ Missing hover state? → SUGGESTION.
 
 All clear? → Write the code.

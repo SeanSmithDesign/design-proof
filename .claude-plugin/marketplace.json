@@ -1,0 +1,25 @@
+{
+  "name": "design-proof",
+  "owner": {
+    "name": "Sean Smith",
+    "url": "https://github.com/SeanSmithDesign"
+  },
+  "metadata": {
+    "description": "Design quality plugin marketplace",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "design",
+      "description": "Design quality lifecycle — creative direction, constraint generation, inline enforcement, composite scoring, and auto-correction. 5 skills, 5 commands, 2 layers, 3 presets.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Sean Smith",
+        "url": "https://github.com/SeanSmithDesign"
+      },
+      "source": "./design",
+      "category": "design",
+      "homepage": "https://github.com/SeanSmithDesign/design-proof"
+    }
+  ]
+}

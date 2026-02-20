@@ -88,6 +88,50 @@ Restructured design-proof from a loose skills/commands folder into a proper Clau
 
 ---
 
+## 2026-02-20 — Plugin Installation & Testing Setup
+
+### Summary
+
+Installed the design plugin into Claude Code for local testing. Created a marketplace manifest so the plugin can be discovered by `claude plugin install`, added design-proof as a local marketplace, and verified the plugin is enabled.
+
+### Features Implemented
+
+- Created `.claude-plugin/marketplace.json` at repo root — wraps the `design/` plugin for marketplace discovery
+- Added `design-proof` as a local marketplace (`claude plugin marketplace add`)
+- Installed `design@design-proof` (v1.0.0, scope: user)
+- Verified all 3 marketplaces configured: `claude-plugins-official`, `every-marketplace`, `design-proof`
+
+### New Files Created
+
+| File | Purpose |
+|------|---------|
+| `.claude-plugin/marketplace.json` | Marketplace manifest for local plugin install |
+
+### Key Commands
+
+```bash
+claude plugin validate /path/to/design-proof/design  # Validate plugin structure
+claude plugin marketplace add /path/to/design-proof   # Add as local marketplace
+claude plugin install design@design-proof              # Install plugin
+claude plugin list                                     # Verify installed
+```
+
+### Notes
+
+- Plugin system requires a marketplace manifest (`.claude-plugin/marketplace.json`) even for single-plugin repos
+- Local directory source means skill file changes are picked up on new sessions without re-installing
+- Restart Claude Code (new session) for newly installed plugin skills to appear in skill list
+- Plugin validates cleanly — 5 skills, 5 commands, 2 layers, 3 presets all wired correctly
+
+### Next Steps
+
+- Test all 5 commands in a new session: `/design:direction`, `/design:brief`, `/design:review`, `/design:fix`, `/design:a11y`
+- Test the orchestrator (`design-quality`) loads as background knowledge
+- Test per-project config parsing from `CLAUDE.md`
+- Address unstaged change to `design/skills/design-quality/layers/a11y.md`
+
+---
+
 ## 2025-02-19 — design-proof
 
 ### Summary

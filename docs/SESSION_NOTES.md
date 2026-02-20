@@ -1,5 +1,93 @@
 # Session Notes
 
+## 2026-02-20 — Plugin Restructure & Merge
+
+### Summary
+
+Restructured design-proof from a loose skills/commands folder into a proper Claude Code plugin under `design/`. Brainstormed and planned the restructure, executed it across 7 commits on `refactor/design-plugin`, then merged to `main` and pushed to origin.
+
+### Features Implemented
+
+**Plugin Scaffold**
+- Created `design/.claude-plugin/plugin.json` with name, version, author, license, keywords
+- Moved all skills from `skills/design/` to `design/skills/`
+- Moved commands from `commands/` to `design/commands/`
+
+**New Skills**
+- `design-direction` — Define visual identity and creative direction before coding
+- `design-fix` — Auto-apply corrections from review findings
+
+**New Commands**
+- `/design:direction`, `/design:brief`, `/design:review`, `/design:fix`, `/design:a11y`
+- All 5 commands wired as thin entry points to their respective skills
+
+**Renames & Cleanup**
+- `bringhurst` layer → `craft` (clearer, less jargon)
+- Presets renamed: `apple-notion` → `refined-simple`, `linear-mercury` → `clean-functional`, `stripe-vercel` → `premium-depth`
+- Removed old `skills/design/` and `commands/` directories
+- Updated all internal paths, frontmatter, and severity vocabulary
+
+**Documentation**
+- `design/README.md` — Install instructions, command reference, config guide
+- `design/CLAUDE.md` — Development conventions, check ID scheme, pre-commit checklist
+- `design/CHANGELOG.md`, `design/CREDITS.md`, `design/LICENSE`
+- Brainstorm and plan docs in `docs/brainstorms/` and `docs/plans/`
+
+**Root CLAUDE.md**
+- Simplified to reference the plugin instead of inlining config
+- Config section: Layers, Aesthetic, Strictness, Teaching, Auto-fix
+
+### New Files Created
+
+| File | Purpose |
+|------|---------|
+| `design/.claude-plugin/plugin.json` | Plugin manifest |
+| `design/README.md` | User-facing install & usage docs |
+| `design/CLAUDE.md` | Developer conventions |
+| `design/CHANGELOG.md` | Version history |
+| `design/CREDITS.md` | Attribution |
+| `design/LICENSE` | MIT license |
+| `design/commands/direction.md` | `/design:direction` command |
+| `design/commands/brief.md` | `/design:brief` command |
+| `design/commands/review.md` | `/design:review` command |
+| `design/commands/fix.md` | `/design:fix` command |
+| `design/skills/design-direction/SKILL.md` | Creative direction skill |
+| `design/skills/design-fix/SKILL.md` | Auto-fix skill |
+| `design/skills/design-review/SKILL.md` | Review orchestrator skill |
+
+### Key Commands
+
+- `/design:direction` — Define visual identity
+- `/design:brief` — Generate constraints before coding
+- `/design:review` — Composite score with layer sub-scores
+- `/design:fix` — Auto-apply corrections
+- `/design:a11y` — Accessibility audit
+
+### Commits
+
+- `2404909` — docs: add brainstorm and plan for plugin restructure
+- `5ef355d` — feat(plugin): scaffold design plugin with copied source files
+- `e9cb4c2` — refactor(plugin): update content — paths, names, frontmatter, severity sync
+- `b4ceedc` — feat(plugin): add design-direction and design-fix skills
+- `a96ad46` — feat(plugin): add command files for all 5 slash commands
+- `7fb6007` — docs(plugin): add metadata — README, CREDITS, CHANGELOG, dev guide
+- `beb1810` — refactor: update CLAUDE.md to lean plugin config
+- `6e52db0` — refactor(plugin): remove old pre-plugin file structure
+
+### Next Steps
+
+- Test plugin install: `claude plugin add SeanSmithDesign/design-proof --path design`
+- Test `claude --plugin-dir ./design` for local loading
+- Verify all 5 commands register and run correctly
+- Prepare distribution: official directory submission, skills.sh compatibility, npm package
+- See `memory/design-plugin-distribution.md` for full publishing plan
+
+### Repo
+
+- https://github.com/SeanSmithDesign/design-proof
+
+---
+
 ## 2025-02-19 — design-proof
 
 ### Summary

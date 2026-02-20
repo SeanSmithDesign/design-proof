@@ -51,6 +51,6 @@ Instructions for contributing to this plugin.
 ## Adding a New Preset
 
 1. Create `skills/design-quality/presets/<name>.md`
-2. Follow the 8-section schema (Philosophy through Do/Don't Examples)
+2. Follow the 9-section schema (Philosophy through Do/Don't Examples)
 3. Add `<!-- Inspired by ... -->` comment after title
 4. Test with `/design:brief` to verify constraint generation

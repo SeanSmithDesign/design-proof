@@ -130,7 +130,7 @@ Users can configure auto-fix behavior in their project's `CLAUDE.md`:
 | `none` | Present all findings for manual approval (default) |
 | `errors` | Auto-apply error-level fixes; present warnings for approval |
 | `errors-warnings` | Auto-apply errors + warnings; present suggestions for info |
-| `silent` | Auto-apply errors + warnings, skip suggestions, no prompt. For CI/pre-commit. |
+| `silent` | Auto-apply high-confidence error-level fixes only, skip everything else, no prompt. For CI/pre-commit. |
 
 ## Error Handling
 

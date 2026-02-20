@@ -80,7 +80,7 @@ Open-ended with suggestions. This is the primary anti-slop mechanism — it grou
 
 ### Step 2: Generate Preset
 
-Write a preset file matching the 8-section schema used by built-in presets:
+Write a preset file matching the 9-section schema used by built-in presets:
 
 1. **Philosophy** — 2-3 sentences capturing the aesthetic intent. Must contain one unique "signature move" phrase. Bad: "Clean, modern, and professional." Good: "Quiet authority. The interface earns trust through what it omits."
 2. **Reference Apps** — The apps from Q3, with specific study notes
@@ -120,7 +120,7 @@ Write a preset file matching the 8-section schema used by built-in presets:
 
 1. **Write preset:** `<project-root>/.claude/presets/<name>.md`
    - Name derived from the mood + interface type (e.g., `quiet-dashboard.md`, `bold-landing.md`)
-   - Follow the exact 8-section schema from built-in presets
+   - Follow the exact 9-section schema from built-in presets
 
 2. **Update CLAUDE.md:** Add or update the `## Design Quality` section:
    ```markdown

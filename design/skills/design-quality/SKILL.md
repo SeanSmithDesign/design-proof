@@ -66,6 +66,7 @@ Read the project's `CLAUDE.md` for a `## Design Quality` section. Parse these fi
 | **Aesthetic** | `clean-functional` | A preset name (`clean-functional`, `premium-depth`, `refined-simple`), `design-system` (auto-detect), or `none` |
 | **Strictness** | `standard` | `relaxed` (suggestions only), `standard` (warnings), `strict` (errors that affect score) |
 | **Teaching** | `normal` | `verbose` (explain everything), `normal` (explain novel violations — first per concept per session), `quiet` (just flag) |
+| **Auto-fix** | `none` | `none` (manual), `errors` (auto-fix errors), `errors-warnings`, `silent` (CI/pre-commit) |
 | **Overrides** | none | Key-value overrides for any layer (e.g., `measure: 60-80ch`) |
 
 ### Config Example
@@ -77,6 +78,7 @@ Read the project's `CLAUDE.md` for a `## Design Quality` section. Parse these fi
 **Aesthetic:** clean-functional
 **Strictness:** standard
 **Teaching:** normal
+**Auto-fix:** none
 **Overrides:**
 - measure: 60-80ch (wider for code documentation)
 ```
@@ -88,6 +90,7 @@ If no `## Design Quality` section is found:
 - Aesthetic: `clean-functional` (fallback preset)
 - Strictness: `standard`
 - Teaching: `normal`
+- Auto-fix: `none`
 - Overrides: none
 
 ### Design System Detection

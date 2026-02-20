@@ -53,6 +53,7 @@ Add to your project's `CLAUDE.md`:
 | **Strictness** | `relaxed` / `standard` / `strict` | Controls check severity thresholds |
 | **Teaching** | `verbose` / `normal` / `quiet` | Controls educational output |
 | **Auto-fix** | `none` / `errors` / `errors-warnings` / `silent` | Controls fix automation |
+| **Overrides** | Key-value overrides for any layer | e.g., `measure: 60-80ch` |
 
 ## Credits
 

@@ -1,0 +1,12 @@
+{
+  "name": "design",
+  "version": "1.0.0",
+  "description": "Design quality lifecycle — creative direction, constraint generation, inline enforcement, composite scoring, and auto-correction. 5 skills, 5 commands, 2 layers, 3 presets.",
+  "author": {
+    "name": "Sean Smith",
+    "url": "https://github.com/SeanSmithDesign"
+  },
+  "license": "MIT",
+  "keywords": ["design", "accessibility", "typography", "quality", "wcag", "a11y"],
+  "repository": "https://github.com/SeanSmithDesign/design-proof"
+}

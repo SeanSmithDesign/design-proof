@@ -1,21 +1,8 @@
 ---
-name: design-brief
-user_invocable: true
-description: Generate a unified style brief from all active design layers before coding UI. Outputs craft constraints (measure, rhythm, scale), aesthetic rules (typography, color, spacing, elevation, motion), and a11y requirements (touch targets, contrast, ARIA patterns).
-license: MIT
-metadata:
-  version: 2.0.0
-  category: design
-  domain: design-quality
-keywords:
-  - design brief
-  - style brief
-  - style constraints
-  - before coding
-  - design tokens
-  - preset
-  - bringhurst
-  - accessibility
+description: >-
+  Generate a unified style brief from all active design layers before coding UI.
+  Outputs craft constraints, aesthetic rules, and a11y requirements.
+argument-hint: "[preset-name]"
 ---
 
 # Design Brief
@@ -24,22 +11,17 @@ Generate a unified style brief that constrains upcoming UI work using **all acti
 
 ## Setup
 
-1. Load the design engine: `~/.claude/skills/design/design-quality/SKILL.md`
-2. Follow the engine's **Step 1: Load Project Config** to determine active layers, aesthetic, strictness, and teaching mode
-3. Load layer references for each active layer:
-   - If bringhurst active → `~/.claude/skills/design/design-quality/layers/bringhurst.md`
-   - If a11y active → `~/.claude/skills/design/design-quality/layers/a11y.md`
-4. Load the aesthetic preset from `~/.claude/skills/design/design-quality/presets/<name>.md`
+Ensure the [design-quality engine](../design-quality/SKILL.md) is loaded — it handles layer/preset/config resolution (Step 1: Load Project Config).
 
 ## Arguments
 
-If an argument is provided (e.g., `design-brief stripe-vercel`), use that preset instead of the project default. Layer configuration still comes from the project's `CLAUDE.md`.
+If an argument is provided (e.g., `/design:brief premium-depth`), use that preset instead of the project default. Layer configuration still comes from the project's `CLAUDE.md`.
 
 ## Execution
 
 Generate a unified brief with sections from **each active layer**:
 
-### From Craft Layer (bringhurst) — if active
+### From Craft Layer — if active
 
 1. **Measure** — Maximum line length for body text, recommended Tailwind classes
 2. **Vertical Rhythm** — Base unit derived from body line-height, spacing multiples
@@ -70,13 +52,13 @@ Generate a unified brief with sections from **each active layer**:
 
 ```markdown
 ## Style Brief
-**Active Layers:** [bringhurst, aesthetic, a11y]
+**Active Layers:** [craft, aesthetic, a11y]
 **Aesthetic:** [preset name or design-system]
 **Strictness:** [relaxed / standard / strict]
 
 ---
 
-### Craft Constraints (Bringhurst)
+### Craft Constraints
 
 **Measure:** Body text max 65-75ch. Use `max-w-prose` or `max-w-2xl`.
 **Rhythm Base:** [X]px (from body line-height [size]px × [ratio]).
@@ -129,7 +111,7 @@ After generating, ask if the user wants to proceed with coding or adjust any con
 
 ## Layer-Specific Notes
 
-- If **only bringhurst** is active (no aesthetic), the brief focuses on craft fundamentals without preset-specific rules. Generic best practices replace preset sections.
-- If **only a11y** is active (no bringhurst), skip the craft constraints section.
+- If **only craft** is active (no aesthetic), the brief focuses on craft fundamentals without preset-specific rules. Generic best practices replace preset sections.
+- If **only a11y** is active (no craft), skip the craft constraints section.
 - If **aesthetic is `none`**, skip the aesthetic section entirely. Craft and a11y constraints still apply.
 - If **aesthetic is `design-system`**, analyze the project's design system tokens and generate the aesthetic section from those instead of a preset file.

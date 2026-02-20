@@ -8,13 +8,13 @@ The composite score combines three layer sub-scores. Only active layers contribu
 
 | Layer | Sub-Score | Categories |
 |-------|-----------|------------|
-| **Craft** (bringhurst) | /30 | Measure & Readability, Vertical Rhythm, Type Scale & Weight |
+| **Craft** (craft) | /30 | Measure & Readability, Vertical Rhythm, Type Scale & Weight |
 | **Aesthetic** (preset) | /40 | Hierarchy, Color & Tokens, Spacing & Grid, Elevation & Polish |
 | **Accessibility** (a11y) | /30 | WCAG Compliance, Visual Quality, Component States |
 | **Composite** | /100 | Weighted sum of active layers |
 
 **When all layers active:** Craft 30 + Aesthetic 40 + A11y 30 = 100
-**When only bringhurst + a11y:** Craft 40 + A11y 60 = 100 (re-weighted)
+**When only craft + a11y:** Craft 40 + A11y 60 = 100 (re-weighted)
 **When only aesthetic + a11y:** Aesthetic 55 + A11y 45 = 100 (re-weighted)
 
 ---
@@ -31,7 +31,7 @@ The score is qualitative — treat as directional, not precise.
 
 ---
 
-## Craft Sub-Score (Bringhurst Layer) — /30
+## Craft Sub-Score (Craft Layer) — /30
 
 ### Category: Measure & Readability (~10 pts)
 
@@ -159,7 +159,7 @@ Does the interface feel finished? Does depth match the preset's system?
 **Common Violations:**
 | Violation | Severity | Example |
 |-----------|----------|---------|
-| Wrong elevation pattern for preset | Warning | Shadows on cards in apple-notion preset |
+| Wrong elevation pattern for preset | Warning | Shadows on cards in refined-simple preset |
 | Missing hover state | Warning | Card with no visual feedback on hover |
 | No transition on state change | Warning | Shadow appears instantly |
 | Inconsistent border-radius | Suggestion | Mix of `rounded-md` and `rounded-lg` |
@@ -353,7 +353,7 @@ Concrete code examples to calibrate scoring consistency across sessions.
 ### Layer Sub-Scores
 | Layer | Score | Rating |
 |-------|-------|--------|
-| Craft (bringhurst) | XX/30 | Pass / Needs Work / Fail |
+| Craft (craft) | XX/30 | Pass / Needs Work / Fail |
 | Aesthetic ([preset]) | XX/40 | Pass / Needs Work / Fail |
 | Accessibility (a11y) | XX/30 | Pass / Needs Work / Fail |
 

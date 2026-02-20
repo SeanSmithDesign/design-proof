@@ -1,4 +1,6 @@
-# Preset: Stripe / Vercel
+# Preset: Premium Depth
+
+<!-- Inspired by Stripe and Vercel aesthetics -->
 
 ## Philosophy
 
@@ -45,7 +47,7 @@ Study: How these apps use layered depth (shadows + gradients + borders) together
 
 - **Grid:** 8px base, but generous. This aesthetic breathes.
 - **Component padding:**
-  - Cards: `p-8` (32px) or `p-10` (40px) — more generous than linear-mercury
+  - Cards: `p-8` (32px) or `p-10` (40px) — more generous than clean-functional
   - Buttons: `px-6 py-3` (24px / 12px)
   - Hero section: `py-24` to `py-32` (96-128px)
 - **Section spacing:**

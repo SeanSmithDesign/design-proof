@@ -1,4 +1,6 @@
-# Preset: Apple / Notion
+# Preset: Refined Simple
+
+<!-- Inspired by Apple and Notion aesthetics -->
 
 ## Philosophy
 

@@ -1,8 +1,10 @@
-# Layer: Bringhurst (Craft)
+# Layer: Craft
 
-Typographic and spatial fundamentals inspired by Robert Bringhurst's *The Elements of Typographic Style*. This layer enforces the invisible craft that makes interfaces feel "right" — even when users can't articulate why.
+<!-- Inspired by Robert Bringhurst's "The Elements of Typographic Style" -->
 
-**Layer ID:** `bringhurst`
+Typographic and spatial fundamentals. This layer enforces the invisible craft that makes interfaces feel "right" — even when users can't articulate why.
+
+**Layer ID:** `craft`
 **Default:** On (always active unless explicitly disabled)
 **Applies to:** All platforms (web-first examples, concepts translate)
 
@@ -90,42 +92,42 @@ Good typography doesn't call attention to itself. It serves the content.
 
 These checks are applied during the **work** phase (inline guard) and the **review** phase (explicit audit).
 
-### B1. Measure Violation
+### C1. Measure Violation
 **Severity:** Warning
 **What to look for:** Body text containers wider than 75ch without multi-column layout or sidebar
 **Web signals:** `max-w-3xl`, `max-w-4xl`, `max-w-5xl`, `max-w-6xl`, `max-w-7xl`, `max-w-full`, `w-full` on text-heavy containers without a constraining parent
 **Fix:** Use `max-w-prose` (65ch) or `max-w-2xl` (672px, ~75ch) for single-column body text
 **Skip when:** Container holds a data table, code block, dashboard grid, or multi-column layout
 
-### B2. Vertical Rhythm Break
+### C2. Vertical Rhythm Break
 **Severity:** Warning
 **What to look for:** Spacing values (line-height, margin, padding) within a component that don't share a common divisor
 **Web signals:** Mix of values like `mb-3` (12px), `mt-5` (20px), `gap-7` (28px) — these share no common unit
 **Fix:** Choose a base unit (typically body line-height) and derive all spacing from it
 **Skip when:** Spacing is dictated by a design system's explicit token set
 
-### B3. Orphaned Heading
+### C3. Orphaned Heading
 **Severity:** Warning
 **What to look for:** A heading element at the end of a container with less than 2 lines of body content following it
 **Web signals:** `<h2>` or `<h3>` as the last or near-last child in a section/div
 **Fix:** Ensure headings always have enough content beneath them, or restructure the layout
 **Skip when:** Heading is intentionally standalone (e.g., a section title in a sidebar nav)
 
-### B4. Scale Violation
+### C4. Scale Violation
 **Severity:** Suggestion
 **What to look for:** Font sizes that don't follow a discernible mathematical ratio
 **Web signals:** Arbitrary jumps like `text-sm` (14px) to `text-2xl` (24px) with nothing in between — a 1.71x jump that skips the natural intermediate step
 **Fix:** Identify a modular scale ratio and add intermediate sizes. For 14→24, a perfect fourth (1.333) suggests 14 → 18.7 → 24.9
 **Skip when:** Only 2 sizes are used (body + heading) — a ratio is implicit
 
-### B5. Weight Sprawl
+### C5. Weight Sprawl
 **Severity:** Suggestion
 **What to look for:** More than 3 distinct font-weight values within a single component
 **Web signals:** `font-normal`, `font-medium`, `font-semibold`, `font-bold` all appearing in one component
 **Fix:** Reduce to a palette of 2-3 weights with clear roles (heading, emphasis, body)
 **Skip when:** Component is a rich text renderer or documentation page with legitimate weight variety
 
-### B6. Typeface Sprawl
+### C6. Typeface Sprawl
 **Severity:** Warning
 **What to look for:** More than 2 font families in use across the interface
 **Web signals:** `font-sans`, `font-serif`, `font-mono` + a custom `font-display` all in active use (excluding code blocks)

@@ -4,7 +4,7 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 
 **Layer tags:** Each check is tagged with its layer. Skip checks for inactive layers.
 - `[aesthetic]` — Requires an active preset or design system
-- `[bringhurst]` — Craft layer (typography & spatial fundamentals)
+- `[craft]` — Craft layer (typography & spatial fundamentals)
 - `[a11y]` — Accessibility (WCAG 2.1 + 2.2), modern HTML, visual quality layer
 - `[preset:<name>]` — Preset-specific exception applies
 
@@ -40,12 +40,12 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 **Look for:** `bg-white`, `bg-black`, `text-white`, `text-black`, `dark:bg-*` overrides
 **Fix:** Use CSS variable-backed tokens that auto-adapt: `bg-background`, `text-foreground`, `bg-card`
 **Preset exceptions:**
-- `apple-notion`: `bg-white` is acceptable when used as the primary background in a light-first context where the preset explicitly calls for white backgrounds. Still flag `text-white` and `dark:bg-*` overrides.
-- `stripe-vercel`: `text-white` on dark backgrounds (`bg-gray-950`, `bg-black`) is the preset's primary pattern. Still flag `bg-white` as primary background (prefer `bg-gray-950`).
+- `refined-simple`: `bg-white` is acceptable when used as the primary background in a light-first context where the preset explicitly calls for white backgrounds. Still flag `text-white` and `dark:bg-*` overrides.
+- `premium-depth`: `text-white` on dark backgrounds (`bg-gray-950`, `bg-black`) is the preset's primary pattern. Still flag `bg-white` as primary background (prefer `bg-gray-950`).
 ```tsx
 // Bad:  bg-white dark:bg-gray-900
 // Good: bg-background
-// Exception (apple-notion): bg-white on root/section background = OK
+// Exception (refined-simple): bg-white on root/section background = OK
 ```
 
 ### 4. Font Family Compliance `[aesthetic]`
@@ -94,14 +94,14 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 **Look for:** Shadow usage that doesn't match preset levels. Mixing borders and shadows on cards.
 **Fix:** Follow preset's elevation system
 **Preset exceptions:**
-- `apple-notion`: Borders WITHOUT shadows is the expected pattern (hairline borders, no shadow on cards). Only flag borders + heavy shadows together.
-- `stripe-vercel`: Borders + shadows together is expected (layered depth is the preset's signature).
+- `refined-simple`: Borders WITHOUT shadows is the expected pattern (hairline borders, no shadow on cards). Only flag borders + heavy shadows together.
+- `premium-depth`: Borders + shadows together is expected (layered depth is the preset's signature).
 ```tsx
-// Bad (linear-mercury): border border-gray-200 shadow-lg
-// Good (linear-mercury): shadow-xs hover:shadow-sm
+// Bad (clean-functional): border border-gray-200 shadow-lg
+// Good (clean-functional): shadow-xs hover:shadow-sm
 ```
 
-### 9. Typography Weight Consistency `[aesthetic]` `[bringhurst]`
+### 9. Typography Weight Consistency `[aesthetic]` `[craft]`
 **Severity:** Warning
 **Look for:** More than 3 font weights in a single component. Headings with inconsistent weight.
 **Fix:** Stick to the preset's weight hierarchy
@@ -121,42 +121,42 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 
 ---
 
-## Craft Checks (Bringhurst layer — typographic & spatial fundamentals)
+## Craft Checks (typography & spatial fundamentals)
 
-### 11. Measure Violation `[bringhurst]`
+### 11. Measure Violation `[craft]`
 **Severity:** Warning
 **Look for:** Body text containers wider than 75ch without multi-column layout or sidebar
 **Web signals:** `max-w-3xl`+, `max-w-full`, `w-full` on text-heavy containers
 **Fix:** Use `max-w-prose` (65ch) or `max-w-2xl` (~75ch) for single-column body text
 **Skip when:** Container holds a data table, code block, dashboard grid, or multi-column layout
 
-### 12. Vertical Rhythm Break `[bringhurst]`
+### 12. Vertical Rhythm Break `[craft]`
 **Severity:** Warning
 **Look for:** Spacing values within a component that don't share a common divisor
 **Web signals:** Mix of `mb-3` (12px), `mt-5` (20px), `gap-7` (28px) — no common base
 **Fix:** Choose a base unit (typically body line-height) and derive all spacing from it
 **Skip when:** Spacing is dictated by a design system's explicit token set
 
-### 13. Orphaned Heading `[bringhurst]`
+### 13. Orphaned Heading `[craft]`
 **Severity:** Warning
 **Look for:** Heading at end of container with < 2 lines of body content following
 **Fix:** Ensure headings always have content beneath them, or restructure layout
 **Skip when:** Heading is intentionally standalone (e.g., sidebar nav title)
 
-### 14. Scale Violation `[bringhurst]`
+### 14. Scale Violation `[craft]`
 **Severity:** Suggestion
 **Look for:** Font sizes that don't follow a discernible mathematical ratio
 **Web signals:** Jump from `text-sm` (14px) to `text-2xl` (24px) — 1.71x with no intermediate
 **Fix:** Identify a modular scale ratio and add intermediate sizes
 **Skip when:** Only 2 sizes used (body + heading)
 
-### 15. Weight Sprawl `[bringhurst]`
+### 15. Weight Sprawl `[craft]`
 **Severity:** Suggestion
 **Look for:** More than 3 distinct font-weight values within a single component
 **Fix:** Reduce to 2-3 weights with clear roles (heading, emphasis, body)
 **Skip when:** Component is a rich text renderer or documentation page
 
-### 16. Typeface Sprawl `[bringhurst]`
+### 16. Typeface Sprawl `[craft]`
 **Severity:** Warning
 **Look for:** More than 2 font families in use across the interface
 **Fix:** Reduce to 1 primary family + 1 utility (mono for code)
@@ -293,7 +293,7 @@ Writing a component? Check active layers:
 ├─ Spacing off 8px grid? → WARNING. Snap to grid.
 └─ No transition on hover? → WARNING. Add transition.
 
-[bringhurst] layer active?
+[craft] layer active?
 ├─ Text container > 75ch? → WARNING. Constrain measure.
 ├─ Spacing values share no common base? → WARNING. Establish rhythm.
 ├─ Font sizes skip scale steps? → SUGGESTION. Fill the scale.

@@ -1,4 +1,6 @@
-# Preset: Linear / Mercury
+# Preset: Clean Functional
+
+<!-- Inspired by Linear and Mercury aesthetics -->
 
 ## Philosophy
 

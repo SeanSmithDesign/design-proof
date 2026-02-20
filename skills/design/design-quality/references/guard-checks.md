@@ -167,7 +167,7 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 ## Accessibility Checks (A11y layer)
 
 ### 17. Focus Indicators `[a11y]`
-**Severity:** Error
+**Severity:** Warning
 **Look for:** `outline-none` or `focus:outline-none` without `focus-visible:ring-*` replacement
 **Fix:** Add visible focus indicator: `focus-visible:ring-2 focus-visible:ring-ring`
 ```tsx
@@ -181,7 +181,7 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 **Fix:** Add icon or text label alongside color indicator
 
 ### 19. Reduced Motion `[a11y]`
-**Severity:** Warning
+**Severity:** Suggestion
 **Look for:** Animations without `prefers-reduced-motion` consideration
 **Fix:** Use `motion-safe:` Tailwind prefix or `@media (prefers-reduced-motion: reduce)` query
 
@@ -210,7 +210,7 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 **Look for:** Layouts requiring horizontal scroll at 320px viewport width
 **Fix:** Ensure content reflows to single column at narrow viewports
 
-### 25a. Text Spacing Tolerance `[a11y]`
+### 25. Text Spacing Tolerance `[a11y]`
 **Severity:** Warning
 **Look for:** Layouts that break under WCAG text spacing overrides (line-height 1.5×, paragraph spacing 2×, letter-spacing 0.12em, word-spacing 0.16em)
 **Fix:** Avoid fixed heights on text containers, use flexible layouts
@@ -226,7 +226,7 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 **Fix:** Pre-populate from earlier steps or allow auto-fill
 
 ### 28. Consistent Help Location `[a11y]`
-**Severity:** Suggestion
+**Severity:** Warning
 **Look for:** Help mechanisms (chat, FAQ, contact) in different positions across pages
 **Fix:** Keep help in a consistent location across the site
 
@@ -254,27 +254,27 @@ Quick-reference checklist for Guard mode. Before writing any UI code, self-check
 
 ## Judgment Checks (Require visual/contextual assessment)
 
-### 21. Visual Hierarchy Clarity `[aesthetic]`
+### 33. Visual Hierarchy Clarity `[aesthetic]`
 **Severity:** Warning
 **Look for:** Multiple elements competing for attention at the same visual level
 **Fix:** Differentiate via size, weight, or color. One clear focal point per section.
 
-### 22. Color Accent Restraint `[aesthetic]`
+### 34. Color Accent Restraint `[aesthetic]`
 **Severity:** Suggestion
 **Look for:** More accent-colored elements than the preset recommends
 **Fix:** Reduce accent usage. Use neutral colors for secondary elements.
 
-### 23. Hover State Presence `[aesthetic]`
+### 35. Hover State Presence `[aesthetic]`
 **Severity:** Suggestion
 **Look for:** Interactive elements without visible hover feedback
 **Fix:** Add hover state (background shift, shadow lift, or color change)
 
-### 24. Empty/Loading/Error States `[a11y]`
+### 36. Empty/Loading/Error States `[a11y]`
 **Severity:** Suggestion
 **Look for:** Components that display data without handling no-data, loading, or error conditions
 **Fix:** Add appropriate states (skeleton, spinner, empty message, error message)
 
-### 25. Semantic HTML `[a11y]`
+### 37. Semantic HTML `[a11y]`
 **Severity:** Suggestion
 **Look for:** `<div>` used where semantic elements would be more appropriate
 **Fix:** Use `<section>`, `<nav>`, `<main>`, `<article>`, `<header>`, `<footer>` as appropriate

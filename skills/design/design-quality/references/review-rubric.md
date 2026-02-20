@@ -181,16 +181,24 @@ Can all users access the interface?
 - [ ] `aria-live` regions for dynamic content updates
 - [ ] Semantic HTML used appropriately
 - [ ] Heading hierarchy maintained (no skipped levels)
+- [ ] Page language declared (`lang` attribute on `<html>`)
+- [ ] Link text is descriptive (no "click here" / "read more")
+- [ ] WCAG 2.2: Authentication does not require cognitive tests (A21)
+- [ ] WCAG 2.2: No redundant entry in multi-step forms (A22)
+- [ ] WCAG 2.2: Dragging has a non-dragging alternative (A24)
+- [ ] Modern HTML: Native `<dialog>` preferred for modals; `inert` on background content
 
 **Common Violations:**
 | Violation | Severity | Example |
 |-----------|----------|---------|
 | Icon-only button without `aria-label` | Error | `<button><X /></button>` |
 | Touch target too small | Error | `h-8 w-8` icon button (32px) |
-| No focus indicator | Error | `focus:outline-none` without ring replacement |
+| No focus indicator | Warning | `focus:outline-none` without ring replacement |
 | Color-only status | Warning | Green dot for "active" with no text label |
 | Missing aria-live | Warning | Toast without `aria-live="polite"` |
-| Animations ignore reduced-motion | Warning | No `motion-safe:` or media query |
+| Animations ignore reduced-motion | Suggestion | No `motion-safe:` or media query |
+| Password field blocks paste | Warning | WCAG 2.2 accessible auth violation |
+| Modal without `inert` on background | Warning | Background content still keyboard-accessible |
 
 ### Category: Visual Quality (~8 pts)
 

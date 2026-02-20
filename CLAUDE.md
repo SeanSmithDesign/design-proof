@@ -2,48 +2,15 @@
 
 - Uses Ghostty as terminal emulator
 
-## Design Quality (Global)
-
-Always load `~/.claude/skills/design/design-quality/SKILL.md` when working on UI files or when the user mentions design, aesthetics, taste, or polish.
-
-**Unified engine with three composable layers:**
-
-| Layer | File | Purpose | Default |
-|-------|------|---------|---------|
-| **Craft** (bringhurst) | `layers/bringhurst.md` | Typographic & spatial fundamentals (measure, rhythm, scale, weight restraint) | On |
-| **Aesthetic** (preset) | `presets/<name>.md` | Project look & feel (colors, spacing grid, elevation, motion) | `linear-mercury` |
-| **Accessibility** (a11y) | `layers/a11y.md` | WCAG 2.1 + 2.2 compliance, modern HTML, visual quality | On |
-
-**Available presets:** `linear-mercury`, `stripe-vercel`, `apple-notion`
-
-**Skills:**
-- `~/.claude/skills/design/design-quality/SKILL.md` — Core engine (orchestrator, layer loading, inline guard, recommendations)
-- `~/.claude/skills/design/design-brief/SKILL.md` — `/design-brief` before coding (generates constraints from all active layers)
-- `~/.claude/skills/design/design-review/SKILL.md` — `/design-review` after coding (composite score with layer sub-scores + auto-fix)
-- `/a11y` — Standalone accessibility audit (runs just the a11y layer)
-
-**Per-project config** via `## Design Quality` section in each project's `CLAUDE.md`:
-
-```markdown
 ## Design Quality
 
-**Layers:** bringhurst, a11y
-**Aesthetic:** linear-mercury
+The `design` plugin provides all design quality capabilities. Commands: `/design:direction`, `/design:brief`, `/design:review`, `/design:fix`, `/design:a11y`.
+
+**Layers:** craft, a11y
+**Aesthetic:** clean-functional
 **Strictness:** standard
 **Teaching:** normal
-**Overrides:**
-- measure: 60-80ch
-```
-
-| Field | Default | Options |
-|-------|---------|---------|
-| **Layers** | `bringhurst, a11y` | Any combination. Omit one to disable it. |
-| **Aesthetic** | `linear-mercury` | Preset name, `design-system` (auto-detect), or `none` |
-| **Strictness** | `standard` | `relaxed` / `standard` / `strict` |
-| **Teaching** | `normal` | `verbose` / `normal` / `quiet` |
-| **Overrides** | none | Key-value overrides for any layer |
-
-**Smart defaults** when no config exists: bringhurst + a11y on, `linear-mercury` aesthetic, standard strictness, normal teaching.
+**Auto-fix:** none
 
 ## Agent Context System
 
